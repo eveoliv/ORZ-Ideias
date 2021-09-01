@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Orizon.MapaMotorRegras.Api.Entidades;
+using Orizon.MapaMotorRegras.Api.Entities;
 using Orizon.MapaMotorRegras.Api.Repository;
 
 namespace Orizon.MapaMotorRegras.Api.Controllers

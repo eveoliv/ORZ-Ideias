@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.Configuration;
 using Orizon.MapaMotorRegras.Api.Context;
-using Orizon.MapaMotorRegras.Api.Entidades;
+using Orizon.MapaMotorRegras.Api.Entities;
 using Orizon.MapaMotorRegras.Api.Repository;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Orizon.MapaMotorRegras.Api.Entidades
+namespace Orizon.MapaMotorRegras.Api.Entities
 {
     public class RegraDetalhe
     {

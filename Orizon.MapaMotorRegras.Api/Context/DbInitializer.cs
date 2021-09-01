@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Orizon.MapaMotorRegras.Api.Entidades;
+using Orizon.MapaMotorRegras.Api.Entities;
 
 namespace Orizon.MapaMotorRegras.Api.Context
 {
