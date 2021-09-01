@@ -10,7 +10,7 @@ namespace Orizon.MapaMotorRegras.Api.Context
         {
             builder.Property(o => o.Opereadora).HasColumnType("nvarchar(100)").IsRequired();
 
-            builder.Property(m => m.Mapa).HasColumnType("nvarchar(max)");
+            builder.Property(m => m.Rules).HasColumnType("nvarchar(max)");
         }
     }
 }

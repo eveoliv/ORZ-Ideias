@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using Orizon.MapaMotorRegras.Api.Entidades;
 using Orizon.MapaMotorRegras.Api.Repository;
 
@@ -18,10 +17,18 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
             this.repository = repository;
         }
 
+        //[HttpGet]
+        //public ActionResult<IEnumerable<string>> Get()
+        //{
+        //    return new string[] { "ConsultaMapaController value1", "ConsultaMapaController value2" };
+        //}
+
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public IActionResult ListRegrasOperadoras()
         {
-            return new string[] { "ConsultaMapaController value1", "ConsultaMapaController value2" };
+            var lista = repository.All;
+
+            return Ok(lista);
         }
 
         [HttpGet("{id}")]
@@ -33,5 +40,6 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
 
             return Ok(model);
         }
+
     }
 }
