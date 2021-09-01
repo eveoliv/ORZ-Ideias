@@ -1,0 +1,18 @@
+
+******************** DOCKER OUTROS SQLSERVER *******************
+- Docker - Executando o SQL Server em um Contêiner no Linux
+
+> docker pull microsoft/mssql-server-linux:2017-latest
+
+> docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Root@root!" -p 1401:1433 -d --name=serv_sql microsoft/mssql-server-linux:2017-latest		
+
+> docker exec -it serv_sql /opt/mssql-tools/bin/sqlcmd -S localhost -U sa
+ ou
+> docker start <nome do container>
+
+Acessar pelo SqlServer
+
+Nome do servidor: localhost,1401
+Autenticação:     Autenticação do SQL Server
+Logon:            sa
+Senha:            Root@root!
