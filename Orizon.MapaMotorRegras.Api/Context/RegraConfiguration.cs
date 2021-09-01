@@ -9,7 +9,6 @@ namespace Orizon.MapaMotorRegras.Api.Context
         public void Configure(EntityTypeBuilder<Regra> builder)
         {
             builder.Property(o => o.Opereadora).HasColumnType("nvarchar(100)").IsRequired();
-
             builder.Property(m => m.Rules).HasColumnType("nvarchar(max)");
         }
     }

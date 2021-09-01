@@ -15,13 +15,7 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
         public ConsultaMapaController(IRepository<Regra> repository)
         {
             this.repository = repository;
-        }
-
-        //[HttpGet]
-        //public ActionResult<IEnumerable<string>> Get()
-        //{
-        //    return new string[] { "ConsultaMapaController value1", "ConsultaMapaController value2" };
-        //}
+        }        
 
         [HttpGet]
         public IActionResult ListRegrasOperadoras()

@@ -7,7 +7,7 @@ namespace Orizon.MapaMotorRegras.Api.Context
     {
         public static void Initializer(MapaMotorContext context)
         {
-            if (context.Regras.Any())
+            if (context.Regras.Any() || context.RegrasDetalhe.Any())
                 return;
 
             var insertRegras = new Regra[]
@@ -21,7 +21,21 @@ namespace Orizon.MapaMotorRegras.Api.Context
             foreach (var item in insertRegras)            
                 context.Regras.Add(item);
 
-            context.SaveChanges();            
+            context.SaveChanges();
+
+            var insertRegrasDetalhe = new RegraDetalhe[]
+            {
+                new RegraDetalhe { Codigo = 1238, Texto_analise = "Um detalhe qualquer", Operacao = "B", Aut_fat = "F", Nivel = "C", Descricao = "Teste detalhe", Alteravel = 1, Link = 2, Detalhes = "Outro detalhe." },
+                new RegraDetalhe { Codigo = 1123, Texto_analise = "Um detalhe qualquer", Operacao = "B", Aut_fat = "F", Nivel = "C", Descricao = "Teste detalhe", Alteravel = 1, Link = 2, Detalhes = "Outro detalhe." },
+                new RegraDetalhe { Codigo = 1235, Texto_analise = "Um detalhe qualquer", Operacao = "B", Aut_fat = "F", Nivel = "C", Descricao = "Teste detalhe", Alteravel = 1, Link = 2, Detalhes = "Outro detalhe." },
+                new RegraDetalhe { Codigo = 1239, Texto_analise = "Um detalhe qualquer", Operacao = "B", Aut_fat = "F", Nivel = "C", Descricao = "Teste detalhe", Alteravel = 1, Link = 2, Detalhes = "Outro detalhe." }
+            };
+
+            foreach (var item in insertRegrasDetalhe)            
+                context.RegrasDetalhe.Add(item);
+
+            context.SaveChanges();
+            
         }
     }
 }
