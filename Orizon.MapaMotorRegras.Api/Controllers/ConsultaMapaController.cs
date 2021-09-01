@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using Orizon.MapaMotorRegras.Api.Entidades;
 using Orizon.MapaMotorRegras.Api.Repository;
 
@@ -10,30 +11,46 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
     [Route("api/v{version:apiVersion}/[controller]")]
     public class ConsultaMapaController : ControllerBase
     {
-        private readonly IRepository<Regra> repository;
+        private readonly IRepository<Regra> regraRepo;
+        private readonly IRepository<RegraDetalhe> detalheRepo;
 
-        public ConsultaMapaController(IRepository<Regra> repository)
+        public ConsultaMapaController(IRepository<Regra> regraRepo, IRepository<RegraDetalhe> detalheRepo)
         {
-            this.repository = repository;
-        }        
-
-        [HttpGet]
-        public IActionResult ListRegrasOperadoras()
-        {
-            var lista = repository.All;
-
-            return Ok(lista);
+            this.regraRepo = regraRepo;
+            this.detalheRepo = detalheRepo;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetRegrasPorOperadoraId(int id)
+        [HttpGet("GetRegrasPorOperadoraLista")]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult GetRegrasPorOperadoraLista()
         {
-            var model = repository.Find(id);
+            var model = regraRepo.All;
+
+            return Ok(model);
+        }       
+
+        [HttpGet("GetRegrasPorIdOperadora/{id}")]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult GetRegrasPorIdOperadora(int id)
+        {
+            var model = regraRepo.All.Where(c => c.Opereadora == id);            
+
             if (model == null)
                 return NotFound();
 
             return Ok(model);
         }
 
+        [HttpGet("GetDetalhesPorIdRegra/{id}")]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult GetDetalhesPorIdRegra(int id)
+        {
+            var model = detalheRepo.All.Where(d => d.Codigo == id);
+
+            if (model == null)
+                return NotFound();
+
+            return Ok(model);
+        }
     }
 }

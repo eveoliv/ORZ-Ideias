@@ -28,6 +28,7 @@ namespace Orizon.MapaMotorRegras.Api
             });
 
             services.AddTransient<IRepository<Regra>, RepositoryBase<Regra>>();
+            services.AddTransient<IRepository<RegraDetalhe>, RepositoryBase<RegraDetalhe>>();
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
