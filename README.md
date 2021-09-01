@@ -3,6 +3,6 @@
 ## entityframework
 ## sqlserver
 ## ************* Instruções *************
-No arquivo NotesDocker seguir os passos para criar o container sqlserver;
-Subir o container;
-A primeira vez que rodar o projeto a tabela sera criada e populada;
+1. No arquivo NotesDocker seguir os passos para criar o container sqlserver;
+2. Subir o container;
+3 .A primeira vez que rodar o projeto a tabela sera criada e populada;
