@@ -14,7 +14,7 @@ namespace Orizon.MapaMotorRegras.Api
             //CreateWebHostBuilder(args).Build().Run();
 
             //Desenvolvimento iniciar base de dados
-            var host = CreateWebHostBuilder(args).Build();
+            var host =  CreateWebHostBuilder(args).Build();
 
             using (var scope = host.Services.CreateScope())
             {

@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.Configuration;
 using Orizon.MapaMotorRegras.Api.Context;
 using Orizon.MapaMotorRegras.Api.Entities;
 using Orizon.MapaMotorRegras.Api.Repository;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace Orizon.MapaMotorRegras.Api
 {
@@ -22,6 +23,10 @@ namespace Orizon.MapaMotorRegras.Api
         
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+
+            services.AddControllers();
+
             services.AddDbContext<MapaMotorContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("MapaMotorRegras"));
@@ -35,19 +40,35 @@ namespace Orizon.MapaMotorRegras.Api
                 options.SuppressModelStateInvalidFilter = true;
             });
 
+            services.AddSwaggerGen();
+
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new Info { Title = "Mapa Motor Regras", Description = "Documentação da API de Regras do Motor", Version = "1.0" });                
+                options.SwaggerDoc("v1", 
+                    new OpenApiInfo {
+                        Title = "Mapa Motor Regras", 
+                        Description = "Documentação da API de Regras do Motor", 
+                        Version = "1.0" 
+                    });
             });
 
             services.AddApiVersioning();
             
         }
         
-        public void Configure(IApplicationBuilder app)
-        {           
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            
+            app.UseRouting();
+            
             app.UseAuthentication();
-           
+
+            app.UseEndpoints(e => e.MapControllers());
+
             app.UseSwagger();
 
             app.UseSwaggerUI(s =>
