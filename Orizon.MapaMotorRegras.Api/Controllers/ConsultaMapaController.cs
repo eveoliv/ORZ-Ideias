@@ -36,7 +36,7 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
             var model = regraRepo.All.Where(c => c.Opereadora == id);            
 
             if (model == null)
-                return NotFound();
+                return NotFound();           
 
             return Ok(model);
         }
@@ -51,6 +51,6 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
                 return NotFound();
 
             return Ok(model);
-        }
+        }       
     }
 }

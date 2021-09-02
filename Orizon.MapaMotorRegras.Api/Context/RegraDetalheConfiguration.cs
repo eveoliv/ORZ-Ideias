@@ -9,7 +9,6 @@ namespace Orizon.MapaMotorRegras.Api.Context
         public void Configure(EntityTypeBuilder<RegraDetalhe> builder)
         {
             builder.ToTable("criticasdeanalise");
-
             builder.Property(i => i.Codigo).HasColumnName("codigo").HasColumnType("int").IsRequired();
             builder.Property(i => i.Texto_analise).HasColumnName("texto_analise").HasColumnType("varchar(350)");
             builder.Property(i => i.Operacao).HasColumnName("operacao").HasColumnType("varchar(350)");
