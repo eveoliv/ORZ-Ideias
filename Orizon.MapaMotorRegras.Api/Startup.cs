@@ -41,20 +41,13 @@ namespace Orizon.MapaMotorRegras.Api
             });
 
             services.AddApiVersioning();
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            
         }
         
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
+        public void Configure(IApplicationBuilder app)
+        {           
             app.UseAuthentication();
-
-            app.UseMvc();
+           
             app.UseSwagger();
 
             app.UseSwaggerUI(s =>
