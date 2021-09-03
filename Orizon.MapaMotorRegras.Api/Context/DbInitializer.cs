@@ -12,10 +12,10 @@ namespace Orizon.MapaMotorRegras.Api.Context
 
             var insertRegras = new RegraOperadora[]
             {
-                new RegraOperadora { Opereadora = 48, Regra = "1238,4556,4789,1011,10128,10135"},
-                new RegraOperadora { Opereadora = 25, Regra = "1123,1456,1789,1111,11012,11013"},
-                new RegraOperadora { Opereadora = 60, Regra = "1235,4565,7895,1015,10125,10135"},
-                new RegraOperadora { Opereadora = 32, Regra = "1239,9456,8789,1011,81012,21013"}
+                new RegraOperadora { Opereadora = 48, Nome = "BANANA",   Regras = "1238,4556,4789,1011,10128,10135"},
+                new RegraOperadora { Opereadora = 25, Nome = "LARANJA",  Regras = "1123,1456,1789,1111,11012,11013"},
+                new RegraOperadora { Opereadora = 60, Nome = "PERA",     Regras = "1235,4565,7895,1015,10125,10135"},
+                new RegraOperadora { Opereadora = 32, Nome = "MELANCIA", Regras = "1239,9456,8789,1011,81012,21013"}
             };
 
             foreach (var item in insertRegras)            

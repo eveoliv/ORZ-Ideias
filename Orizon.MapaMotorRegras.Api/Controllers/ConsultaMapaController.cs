@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using Orizon.MapaMotorRegras.Api.Entities;
 using Orizon.MapaMotorRegras.Api.Repository;
 
@@ -29,19 +27,19 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
         [AutoValidateAntiforgeryToken]
         public IActionResult GetRegrasPorOperadoraLista()
         {
-            var model = regraRepo.All;
+            var model = from r in regraRepo.All select new { r.Opereadora, r.Nome, r.Regras };
 
             return Ok(model);
-        }       
+        }
 
         [HttpGet("GetRegrasPorIdOperadora/{id}")]
         [AutoValidateAntiforgeryToken]
         public IActionResult GetRegrasPorIdOperadora(int id)
         {
-            var model = regraRepo.All.Where(c => c.Opereadora == id);            
+            var model = from r in regraRepo.All.Where(c => c.Opereadora == id) select new { r.Opereadora, r.Nome, r.Regras };
 
             if (model == null)
-                return NotFound();           
+                return NotFound();
 
             return Ok(model);
         }
@@ -49,23 +47,15 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
         [HttpGet("GetDetalhesPorIdRegra/{id}")]
         [AutoValidateAntiforgeryToken]
         public IActionResult GetDetalhesPorIdRegra(int id)
-        {          
-            var regra = detalheRepo.All.Where(d => d.Codigo == id);
-            var link = docRepo.All.Where(d => d.Codigo == id);  
+        {
+            var model = from r in detalheRepo.All.Where(d => d.Codigo == id)
+                        join l in docRepo.All.Where(d => d.Codigo == id) on r.Codigo equals l.Codigo
+                        select new { r.Codigo, r.Texto_analise, l.DocLink };
 
-            if (regra == null || link == null)
+            if (model == null)
                 return NotFound();
 
-            var resumo = from r in regra
-                      join l in link on r.Codigo equals l.Codigo
-                      select new RegraDetalheApi
-                      {
-                          Codigo = r.Codigo,
-                          Texto_analise = r.Texto_analise,                          
-                          Documentacao = l.DocLink
-                      };
-
-            return Ok(resumo);
-        }       
+            return Ok(model);
+        }
     }
 }
