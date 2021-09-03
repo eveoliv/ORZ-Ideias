@@ -7,15 +7,16 @@ namespace Orizon.MapaMotorRegras.Api.Context
     {
         public static void Initializer(MapaMotorContext context)
         {
+            //Desenvolvimento criar e popular tabelas no banco
             if (context.RegrasOperadora.Any() || context.RegrasDetalhe.Any() || context.Documentacoes.Any())
                 return;
 
             var insertRegras = new RegraOperadora[]
             {
-                new RegraOperadora { Opereadora = 48, Nome = "BANANA",   Regras = "1238,4556,4789,1011,10128,10135"},
-                new RegraOperadora { Opereadora = 25, Nome = "LARANJA",  Regras = "1123,1456,1789,1111,11012,11013"},
-                new RegraOperadora { Opereadora = 60, Nome = "PERA",     Regras = "1235,4565,7895,1015,10125,10135"},
-                new RegraOperadora { Opereadora = 32, Nome = "MELANCIA", Regras = "1239,9456,8789,1011,81012,21013"}
+                new RegraOperadora { Operadora = 48, Nome = "BANANA",   Regras = "1238,4556,4789,1011,10128,10135"},
+                new RegraOperadora { Operadora = 25, Nome = "LARANJA",  Regras = "1123,1456,1789,1111,11012,11013"},
+                new RegraOperadora { Operadora = 60, Nome = "PERA",     Regras = "1235,4565,7895,1015,10125,10135"},
+                new RegraOperadora { Operadora = 32, Nome = "MELANCIA", Regras = "1239,9456,8789,1011,81012,21013"}
             };
 
             foreach (var item in insertRegras)            

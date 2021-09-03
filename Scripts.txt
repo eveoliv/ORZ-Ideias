@@ -10,8 +10,8 @@ GO
 
 CREATE TABLE [dbo].[MapaMotorRegras](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Opereadora] [nvarchar](100) NOT NULL,
-	[Nome] [nvarchar](max) NULL,
+	[Operadora] [nvarchar](10) NOT NULL,
+	[Nome] [nvarchar](50) NULL,
 	[Regras] [nvarchar](max) NOT NULL,
  CONSTRAINT [PK_MapaMotorRegras] PRIMARY KEY CLUSTERED 
 (

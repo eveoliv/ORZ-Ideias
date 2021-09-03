@@ -27,7 +27,7 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
         [AutoValidateAntiforgeryToken]
         public IActionResult GetRegrasPorOperadoraLista()
         {
-            var model = from r in regraRepo.All select new { r.Opereadora, r.Nome, r.Regras };
+            var model = from r in regraRepo.All select new { r.Operadora, r.Nome, r.Regras };
 
             return Ok(model);
         }
@@ -36,7 +36,7 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
         [AutoValidateAntiforgeryToken]
         public IActionResult GetRegrasPorIdOperadora(int id)
         {
-            var model = from r in regraRepo.All.Where(c => c.Opereadora == id) select new { r.Opereadora, r.Nome, r.Regras };
+            var model = from r in regraRepo.All.Where(c => c.Operadora == id) select new { r.Operadora, r.Nome, r.Regras };
 
             if (model == null)
                 return NotFound();
