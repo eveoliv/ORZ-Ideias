@@ -1,0 +1,45 @@
+USE [Mapa_Motor_Regras]
+GO
+
+/****** Object:  Table [dbo].[MapaMotorRegras]    Script Date: 03/09/2021 13:23:57 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[MapaMotorRegras](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Opereadora] [nvarchar](100) NOT NULL,
+	[Nome] [nvarchar](max) NULL,
+	[Regras] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_MapaMotorRegras] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+
+USE [Mapa_Motor_Regras]
+GO
+
+/****** Object:  Table [dbo].[MapaMotorRegrasDocumentacaoLinks]    Script Date: 03/09/2021 13:25:11 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[MapaMotorRegrasDocumentacaoLinks](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Codigo] [int] NOT NULL,
+	[DocLink] [varchar](1000) NOT NULL,
+ CONSTRAINT [PK_MapaMotorRegrasDocumentacaoLinks] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
