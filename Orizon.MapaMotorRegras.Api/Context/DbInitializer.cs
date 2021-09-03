@@ -7,15 +7,15 @@ namespace Orizon.MapaMotorRegras.Api.Context
     {
         public static void Initializer(MapaMotorContext context)
         {
-            if (context.RegrasOperadora.Any() || context.RegrasDetalhe.Any() || context.Documentacoes.Any())
+            if (context.RegrasOperadora.Any() || context.RegrasDetalhe.Any() || context.RegrasDocumentacao.Any())
                 return;
 
             var insertRegras = new RegraOperadora[]
             {
-                new RegraOperadora { Opereadora = 48, Nome = "BANANA",   Regras = "1238,4556,4789,1011,10128,10135"},
-                new RegraOperadora { Opereadora = 25, Nome = "LARANJA",  Regras = "1123,1456,1789,1111,11012,11013"},
-                new RegraOperadora { Opereadora = 60, Nome = "PERA",     Regras = "1235,4565,7895,1015,10125,10135"},
-                new RegraOperadora { Opereadora = 32, Nome = "MELANCIA", Regras = "1239,9456,8789,1011,81012,21013"}
+                new RegraOperadora { Operadora = 48, Nome = "BANANA",   Regras = "1238,4556,4789,1011,10128,10135"},
+                new RegraOperadora { Operadora = 25, Nome = "LARANJA",  Regras = "1123,1456,1789,1111,11012,11013"},
+                new RegraOperadora { Operadora = 60, Nome = "PERA",     Regras = "1235,4565,7895,1015,10125,10135"},
+                new RegraOperadora { Operadora = 32, Nome = "MELANCIA", Regras = "1239,9456,8789,1011,81012,21013"}
             };
 
             foreach (var item in insertRegras)            
@@ -36,16 +36,16 @@ namespace Orizon.MapaMotorRegras.Api.Context
 
             context.SaveChanges();
 
-            var insertDocumentacoes = new Documentacao[]
+            var insertDocumentacoes = new RegraDocumentacao[]
             {
-                new Documentacao { Codigo = 1238, DocLink = "Link da documentacao"},
-                new Documentacao { Codigo = 1123, DocLink = "Link da documentacao"},
-                new Documentacao { Codigo = 1235, DocLink = "Link da documentacao"},
-                new Documentacao { Codigo = 1239, DocLink = "Link da documentacao"}
+                new RegraDocumentacao { Codigo = 1238, DocLink = "Link da documentacao"},
+                new RegraDocumentacao { Codigo = 1123, DocLink = "Link da documentacao"},
+                new RegraDocumentacao { Codigo = 1235, DocLink = "Link da documentacao"},
+                new RegraDocumentacao { Codigo = 1239, DocLink = "Link da documentacao"}
             };
 
             foreach (var item in insertDocumentacoes)
-                context.Documentacoes.Add(item);
+                context.RegrasDocumentacao.Add(item);
 
             context.SaveChanges();
         }

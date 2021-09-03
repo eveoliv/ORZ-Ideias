@@ -12,11 +12,11 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
     [Route("api/v{version:apiVersion}/[controller]")]
     public class ConsultaMapaController : ControllerBase
     {
-        private readonly IRepository<RegraOperadora> regraRepo;
         private readonly IRepository<RegraDetalhe> detalheRepo;
-        private readonly IRepository<Documentacao> docRepo;
+        private readonly IRepository<RegraOperadora> regraRepo;
+        private readonly IRepository<RegraDocumentacao> docRepo;
 
-        public ConsultaMapaController(IRepository<RegraOperadora> regraRepo, IRepository<RegraDetalhe> detalheRepo, IRepository<Documentacao> docRepo)
+        public ConsultaMapaController(IRepository<RegraOperadora> regraRepo, IRepository<RegraDetalhe> detalheRepo, IRepository<RegraDocumentacao> docRepo)
         {
             this.regraRepo = regraRepo;
             this.detalheRepo = detalheRepo;
@@ -27,7 +27,7 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
         [AutoValidateAntiforgeryToken]
         public IActionResult GetRegrasPorOperadoraLista()
         {
-            var model = from r in regraRepo.All select new { r.Opereadora, r.Nome, r.Regras };
+            var model = from r in regraRepo.All select new { r.Operadora, r.Nome, r.Regras };
 
             return Ok(model);
         }
@@ -36,7 +36,7 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
         [AutoValidateAntiforgeryToken]
         public IActionResult GetRegrasPorIdOperadora(int id)
         {
-            var model = from r in regraRepo.All.Where(c => c.Opereadora == id) select new { r.Opereadora, r.Nome, r.Regras };
+            var model = from r in regraRepo.All.Where(c => c.Operadora == id) select new { r.Operadora, r.Nome, r.Regras };
 
             if (model == null)
                 return NotFound();

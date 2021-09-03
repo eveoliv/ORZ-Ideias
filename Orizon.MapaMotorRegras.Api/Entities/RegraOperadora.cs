@@ -6,7 +6,7 @@ namespace Orizon.MapaMotorRegras.Api.Entities
     {
         [Key]
         public int Id { get; set; }
-        public int Opereadora { get; set; }
+        public int Operadora { get; set; }
         public string Nome { get; set; }
         public string Regras { get; set; }
     }

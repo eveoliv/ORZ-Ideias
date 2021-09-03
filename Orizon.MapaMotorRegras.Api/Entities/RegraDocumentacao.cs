@@ -2,7 +2,7 @@
 
 namespace Orizon.MapaMotorRegras.Api.Entities
 {
-    public class Documentacao
+    public class RegraDocumentacao
     {
         [Key]
         public int Id { get; set; }
