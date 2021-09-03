@@ -15,5 +15,12 @@ namespace Orizon.MapaMotorRegras.Api.Entities
         public byte Alteravel { get; set; }
         public int Link { get; set; }
         public string Detalhes { get; set; }
-    }//criticasdeanalise
+    }
+
+    public class RegraDetalheApi
+    {  
+        public int Codigo { get; set; }
+        public string Texto_analise { get; set; }       
+        public string Documentacao { get; set; }        
+    }
 }

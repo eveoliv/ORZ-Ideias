@@ -5,8 +5,9 @@ namespace Orizon.MapaMotorRegras.Api.Context
 {
     public class MapaMotorContext : DbContext
     {
-        public DbSet<Regra> Regras { get; set; }
+        public DbSet<RegraOperadora> RegrasOperadora { get; set; }
         public DbSet<RegraDetalhe> RegrasDetalhe { get; set; }
+        public DbSet<Documentacao> Documentacoes { get; set; }
 
         public MapaMotorContext(DbContextOptions<MapaMotorContext> options) : base(options)
         {
@@ -16,9 +17,11 @@ namespace Orizon.MapaMotorRegras.Api.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new RegraConfiguration());
+            modelBuilder.ApplyConfiguration(new RegraOperadoraConfiguration());
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new RegraDetalheConfiguration());
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new DocumentacaoConfiguration());
         }
     }
 }

@@ -27,13 +27,16 @@ namespace Orizon.MapaMotorRegras.Api
 
             services.AddControllers();
 
+            services.AddApiVersioning();
+
             services.AddDbContext<MapaMotorContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("MapaMotorRegras"));
             });
 
-            services.AddTransient<IRepository<Regra>, RepositoryBase<Regra>>();
+            services.AddTransient<IRepository<RegraOperadora>, RepositoryBase<RegraOperadora>>();
             services.AddTransient<IRepository<RegraDetalhe>, RepositoryBase<RegraDetalhe>>();
+            services.AddTransient<IRepository<Documentacao>, RepositoryBase<Documentacao>>();
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -50,10 +53,7 @@ namespace Orizon.MapaMotorRegras.Api
                         Description = "Documentação da API de Regras do Motor", 
                         Version = "1.0" 
                     });
-            });
-
-            services.AddApiVersioning();
-            
+            });                        
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

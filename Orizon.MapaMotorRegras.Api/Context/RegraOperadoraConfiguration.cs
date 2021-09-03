@@ -4,12 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Orizon.MapaMotorRegras.Api.Context
 {
-    internal class RegraConfiguration : IEntityTypeConfiguration<Regra>
+    internal class RegraOperadoraConfiguration : IEntityTypeConfiguration<RegraOperadora>
     {
-        public void Configure(EntityTypeBuilder<Regra> builder)
+        public void Configure(EntityTypeBuilder<RegraOperadora> builder)
         {
+            builder.ToTable("MapaMotorRegras");
             builder.Property(o => o.Opereadora).HasColumnType("nvarchar(100)").IsRequired();
-            builder.Property(m => m.Rules).HasColumnType("nvarchar(max)");
+            builder.Property(m => m.Regra).HasColumnType("nvarchar(max)");           
         }
     }
 }

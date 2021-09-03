@@ -7,19 +7,19 @@ namespace Orizon.MapaMotorRegras.Api.Context
     {
         public static void Initializer(MapaMotorContext context)
         {
-            if (context.Regras.Any() || context.RegrasDetalhe.Any())
+            if (context.RegrasOperadora.Any() || context.RegrasDetalhe.Any() || context.Documentacoes.Any())
                 return;
 
-            var insertRegras = new Regra[]
+            var insertRegras = new RegraOperadora[]
             {
-                new Regra { Opereadora = 48, Rules = "1238,4556,4789,1011,10128,10135"},
-                new Regra { Opereadora = 25, Rules = "1123,1456,1789,1111,11012,11013"},
-                new Regra { Opereadora = 60, Rules = "1235,4565,7895,1015,10125,10135"},
-                new Regra { Opereadora = 32, Rules = "1239,9456,8789,1011,81012,21013"}
+                new RegraOperadora { Opereadora = 48, Regra = "1238,4556,4789,1011,10128,10135"},
+                new RegraOperadora { Opereadora = 25, Regra = "1123,1456,1789,1111,11012,11013"},
+                new RegraOperadora { Opereadora = 60, Regra = "1235,4565,7895,1015,10125,10135"},
+                new RegraOperadora { Opereadora = 32, Regra = "1239,9456,8789,1011,81012,21013"}
             };
 
             foreach (var item in insertRegras)            
-                context.Regras.Add(item);
+                context.RegrasOperadora.Add(item);
 
             context.SaveChanges();
 
@@ -35,7 +35,19 @@ namespace Orizon.MapaMotorRegras.Api.Context
                 context.RegrasDetalhe.Add(item);
 
             context.SaveChanges();
-            
+
+            var insertDocumentacoes = new Documentacao[]
+            {
+                new Documentacao { Codigo = 1238, DocLink = "Link da documentacao"},
+                new Documentacao { Codigo = 1123, DocLink = "Link da documentacao"},
+                new Documentacao { Codigo = 1235, DocLink = "Link da documentacao"},
+                new Documentacao { Codigo = 1239, DocLink = "Link da documentacao"}
+            };
+
+            foreach (var item in insertDocumentacoes)
+                context.Documentacoes.Add(item);
+
+            context.SaveChanges();
         }
     }
 }
