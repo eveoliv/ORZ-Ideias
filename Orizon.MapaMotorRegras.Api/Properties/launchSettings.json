@@ -20,7 +20,7 @@
     "Orizon.MapaMotorRegras.Api": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/v1.0/ConsultaMapa",
+      "launchUrl": "api/v1.0/ConsultaRegrasMotor",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

@@ -20,7 +20,7 @@ namespace Orizon.MapaMotorRegras.Api
         }
 
         public IConfiguration Configuration { get; }
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
@@ -36,7 +36,7 @@ namespace Orizon.MapaMotorRegras.Api
 
             services.AddTransient<IRepository<RegraOperadora>, RepositoryBase<RegraOperadora>>();
             services.AddTransient<IRepository<RegraDetalhe>, RepositoryBase<RegraDetalhe>>();
-            services.AddTransient<IRepository<Documentacao>, RepositoryBase<Documentacao>>();
+            services.AddTransient<IRepository<RegraDocumentacao>, RepositoryBase<RegraDocumentacao>>();
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -47,24 +47,24 @@ namespace Orizon.MapaMotorRegras.Api
 
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", 
-                    new OpenApiInfo {
-                        Title = "Mapa Motor Regras", 
-                        Description = "Documentação da API de Regras do Motor", 
-                        Version = "1.0" 
-                    });
-            });                        
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Mapa Motor Regras",
+                    Description = "Documentação da API de Regras do Motor",
+                    Version = "1.0"
+                });
+            });
         }
-        
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            
+
             app.UseRouting();
-            
+
             app.UseAuthentication();
 
             app.UseEndpoints(e => e.MapControllers());
@@ -73,7 +73,7 @@ namespace Orizon.MapaMotorRegras.Api
 
             app.UseSwaggerUI(s =>
             {
-                s.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");                
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
             });
         }
     }

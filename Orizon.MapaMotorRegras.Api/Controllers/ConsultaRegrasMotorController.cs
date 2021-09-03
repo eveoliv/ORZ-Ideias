@@ -10,13 +10,13 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
     [ApiVersion("1.0")]
     [ApiExplorerSettings(GroupName = "v1")]
     [Route("api/v{version:apiVersion}/[controller]")]
-    public class ConsultaMapaController : ControllerBase
+    public class ConsultaRegrasMotorController : ControllerBase
     {
         private readonly IRepository<RegraOperadora> regraRepo;
         private readonly IRepository<RegraDetalhe> detalheRepo;
-        private readonly IRepository<Documentacao> docRepo;
+        private readonly IRepository<RegraDocumentacao> docRepo;
 
-        public ConsultaMapaController(IRepository<RegraOperadora> regraRepo, IRepository<RegraDetalhe> detalheRepo, IRepository<Documentacao> docRepo)
+        public ConsultaRegrasMotorController(IRepository<RegraOperadora> regraRepo, IRepository<RegraDetalhe> detalheRepo, IRepository<RegraDocumentacao> docRepo)
         {
             this.regraRepo = regraRepo;
             this.detalheRepo = detalheRepo;

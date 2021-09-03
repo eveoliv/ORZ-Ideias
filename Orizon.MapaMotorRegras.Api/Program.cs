@@ -23,7 +23,6 @@ namespace Orizon.MapaMotorRegras.Api
                 {
                     var context = services.GetRequiredService<MapaMotorContext>();
                     DbInitializer.Initializer(context);
-
                 }
                 catch (Exception ex)
                 {
@@ -35,7 +34,6 @@ namespace Orizon.MapaMotorRegras.Api
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+            WebHost.CreateDefaultBuilder(args).UseStartup<Startup>();
     }
 }

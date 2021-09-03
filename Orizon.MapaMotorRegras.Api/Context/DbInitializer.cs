@@ -36,12 +36,12 @@ namespace Orizon.MapaMotorRegras.Api.Context
 
             context.SaveChanges();
 
-            var insertDocumentacoes = new Documentacao[]
+            var insertDocumentacoes = new RegraDocumentacao[]
             {
-                new Documentacao { Codigo = 1238, DocLink = "Link da documentacao"},
-                new Documentacao { Codigo = 1123, DocLink = "Link da documentacao"},
-                new Documentacao { Codigo = 1235, DocLink = "Link da documentacao"},
-                new Documentacao { Codigo = 1239, DocLink = "Link da documentacao"}
+                new RegraDocumentacao { Codigo = 1238, DocLink = "Link da documentacao 1238"},
+                new RegraDocumentacao { Codigo = 1123, DocLink = "Link da documentacao 1123"},
+                new RegraDocumentacao { Codigo = 1235, DocLink = "Link da documentacao 1235"},
+                new RegraDocumentacao { Codigo = 1239, DocLink = "Link da documentacao 1239"}
             };
 
             foreach (var item in insertDocumentacoes)
