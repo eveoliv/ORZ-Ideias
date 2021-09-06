@@ -57,5 +57,67 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
 
             return Ok(model);
         }
+
+        //[HttpPost]
+        //[AutoValidateAntiforgeryToken]
+        //public IActionResult AddRegraPorIdOperadora([FromBody])
+        //{
+
+        //}
+
+        [HttpPut("UpdateRegrasPorCodigo/{codigo}")]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult UpdateRegrasPorCodigo([FromBody] int codigo)
+        {
+            var model = from r in detalheRepo.All.Where(d => d.Codigo == codigo)
+                        join l in docRepo.All.Where(d => d.Codigo == codigo) on r.Codigo equals l.Codigo
+                        select new { r.Codigo, r.Texto_analise, l.DocLink };
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            else
+            {
+                return Ok(model);
+            }
+        }
+
+        [HttpDelete("DeleteRegrasPorCodigo/{codigo}")]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult DeleteRegrasPorCodigo(int codigo)
+        {
+            var model = from r in detalheRepo.All.Where(d => d.Codigo == codigo)
+                        join l in docRepo.All.Where(d => d.Codigo == codigo) on r.Codigo equals l.Codigo
+                        select new { r.Codigo, r.Texto_analise, l.DocLink };
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            else
+            {
+                return Ok(model);
+            }
+        }
+
+        [HttpDelete("DeleteRegrasPorIdOperadora/{id}")]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult DeleteRegrasPorIdOperadora(int id)
+        {
+            var model = from r in regraRepo.All.Where(c => c.Operadora == id) select new { r.Operadora, r.Nome, r.Regras };
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            else
+            {
+                return Ok(model);
+            }
+        }
     }
 }
