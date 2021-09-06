@@ -7,7 +7,7 @@ namespace Orizon.MapaMotorRegras.Api.Context
     {
         public DbSet<RegraOperadora> RegrasOperadora { get; set; }
         public DbSet<RegraDetalhe> RegrasDetalhe { get; set; }
-        public DbSet<RegraDocumentacao> Documentacoes { get; set; }
+        public DbSet<RegraDocumentacao> RegrasDocumentacao { get; set; }
 
         public MapaMotorContext(DbContextOptions<MapaMotorContext> options) : base(options)
         {

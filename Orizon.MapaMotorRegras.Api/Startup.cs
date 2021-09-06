@@ -34,8 +34,8 @@ namespace Orizon.MapaMotorRegras.Api
                 options.UseSqlServer(Configuration.GetConnectionString("MapaMotorRegras"));
             });
 
-            services.AddTransient<IRepository<RegraOperadora>, RepositoryBase<RegraOperadora>>();
             services.AddTransient<IRepository<RegraDetalhe>, RepositoryBase<RegraDetalhe>>();
+            services.AddTransient<IRepository<RegraOperadora>, RepositoryBase<RegraOperadora>>();
             services.AddTransient<IRepository<RegraDocumentacao>, RepositoryBase<RegraDocumentacao>>();
 
             services.Configure<ApiBehaviorOptions>(options =>

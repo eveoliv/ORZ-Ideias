@@ -7,8 +7,7 @@ namespace Orizon.MapaMotorRegras.Api.Context
     {
         public static void Initializer(MapaMotorContext context)
         {
-            //Desenvolvimento criar e popular tabelas no banco
-            if (context.RegrasOperadora.Any() || context.RegrasDetalhe.Any() || context.Documentacoes.Any())
+            if (context.RegrasOperadora.Any() || context.RegrasDetalhe.Any() || context.RegrasDocumentacao.Any())
                 return;
 
             var insertRegras = new RegraOperadora[]
@@ -46,7 +45,7 @@ namespace Orizon.MapaMotorRegras.Api.Context
             };
 
             foreach (var item in insertDocumentacoes)
-                context.Documentacoes.Add(item);
+                context.RegrasDocumentacao.Add(item);
 
             context.SaveChanges();
         }
