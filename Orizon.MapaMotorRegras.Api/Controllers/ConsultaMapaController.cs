@@ -96,7 +96,7 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
 
             //VER SE É POSSÍVEL ACHAR UM PEDAÇO DE TEXTO DENTRO DA STRING
             //ASSIM, SE A REGRA JÁ EXISTIR PARA A OPERADORA NÃO SERÁ FEITO O UPDATE
-            
+
             else
             {
                 string nova = model.Regras.Replace(model.Regras, model.Regras + "," + codigo);
@@ -118,10 +118,21 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
 
             else
             {
-                string nova = model.Regras.Replace(codigo.ToString() + ",", "");
-                model.Regras = nova;
-                regraRepo.Alterar(model);
-                return Ok(model);
+                if (codigo == model.Regras.Substring(model.Regras.Length - 4) || codigo == model.Regras.Substring(model.Regras.Length - 3))
+                {
+                    string nova = model.Regras.Replace("," + codigo, "");
+                    model.Regras = nova;
+                    regraRepo.Alterar(model);
+                    return Ok(model);
+                }
+
+                else
+                {
+                    string nova = model.Regras.Replace(codigo + ",", "");
+                    model.Regras = nova;
+                    regraRepo.Alterar(model);
+                    return Ok(model);
+                }
             }
         }
 
