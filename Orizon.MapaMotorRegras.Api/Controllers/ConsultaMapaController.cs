@@ -58,20 +58,17 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
             return Ok(model);
         }
 
+        //VER COMO FAZER O POST PARA INCLUIR UMA OPERADORA E SUAS REGRAS
         //[HttpPost]
-        //[AutoValidateAntiforgeryToken]
-        //public IActionResult AddRegraPorIdOperadora([FromBody])
+        //public IActionResult AddOperadoraERegras([FromBody])
         //{
 
         //}
 
-        [HttpPut("UpdateRegrasPorCodigo/{codigo}")]
-        [AutoValidateAntiforgeryToken]
-        public IActionResult UpdateRegrasPorCodigo([FromBody] int codigo)
+        [HttpPut("UpdateDocumentacaoRegra/{codigo}")]
+        public IActionResult UpdateDocumentacaoRegra(int codigo, string docNovo)
         {
-            var model = from r in detalheRepo.All.Where(d => d.Codigo == codigo)
-                        join l in docRepo.All.Where(d => d.Codigo == codigo) on r.Codigo equals l.Codigo
-                        select new { r.Codigo, r.Texto_analise, l.DocLink };
+            var model = docRepo.All.Where(c => c.Codigo == codigo).FirstOrDefault();
 
             if (model == null)
             {
@@ -80,17 +77,39 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
 
             else
             {
+                string nova = model.DocLink.Replace(model.DocLink, docNovo);
+                model.DocLink = nova;
+                docRepo.Alterar(model);
                 return Ok(model);
             }
         }
 
-        [HttpDelete("DeleteRegrasPorCodigo/{codigo}")]
-        [AutoValidateAntiforgeryToken]
-        public IActionResult DeleteRegrasPorCodigo(int codigo)
+        [HttpPut("UpdateRegrasPorOperadoraECodigo/{id}/{codigo}")]
+        public IActionResult UpdateRegrasPorOperadoraECodigo(int id, string codigo)
         {
-            var model = from r in detalheRepo.All.Where(d => d.Codigo == codigo)
-                        join l in docRepo.All.Where(d => d.Codigo == codigo) on r.Codigo equals l.Codigo
-                        select new { r.Codigo, r.Texto_analise, l.DocLink };
+            var model = regraRepo.All.Where(c => c.Operadora == id).FirstOrDefault();
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            //VER SE É POSSÍVEL ACHAR UM PEDAÇO DE TEXTO DENTRO DA STRING
+            //ASSIM, SE A REGRA JÁ EXISTIR PARA A OPERADORA NÃO SERÁ FEITO O UPDATE
+            
+            else
+            {
+                string nova = model.Regras.Replace(model.Regras, model.Regras + "," + codigo);
+                model.Regras = nova;
+                regraRepo.Alterar(model);
+                return Ok(model);
+            }
+        }
+
+        [HttpPut("DeleteRegrasPorOperadoraECodigo/{id}/{codigo}")]
+        public IActionResult DeleteRegrasPorOperadoraECodigo(int id, string codigo)
+        {
+            var model = regraRepo.All.Where(c => c.Operadora == id && c.Regras.Contains(codigo)).FirstOrDefault();
 
             if (model == null)
             {
@@ -99,15 +118,17 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
 
             else
             {
+                string nova = model.Regras.Replace(codigo.ToString() + ",", "");
+                model.Regras = nova;
+                regraRepo.Alterar(model);
                 return Ok(model);
             }
         }
 
         [HttpDelete("DeleteRegrasPorIdOperadora/{id}")]
-        [AutoValidateAntiforgeryToken]
         public IActionResult DeleteRegrasPorIdOperadora(int id)
         {
-            var model = from r in regraRepo.All.Where(c => c.Operadora == id) select new { r.Operadora, r.Nome, r.Regras };
+            var model = regraRepo.All.Where(c => c.Operadora == id).FirstOrDefault();
 
             if (model == null)
             {
@@ -116,6 +137,7 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
 
             else
             {
+                regraRepo.Excluir(model);
                 return Ok(model);
             }
         }
