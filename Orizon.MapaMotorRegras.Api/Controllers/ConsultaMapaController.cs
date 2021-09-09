@@ -89,21 +89,13 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
         {
             var model = regraRepo.All.Where(c => c.Operadora == id).FirstOrDefault();
 
-            if (model == null)
-            {
+            if (model == null || model.Regras.Contains(codigo))
                 return NotFound();
-            }
 
-            //VER SE É POSSÍVEL ACHAR UM PEDAÇO DE TEXTO DENTRO DA STRING
-            //ASSIM, SE A REGRA JÁ EXISTIR PARA A OPERADORA NÃO SERÁ FEITO O UPDATE
-
-            else
-            {
-                string nova = model.Regras.Replace(model.Regras, model.Regras + "," + codigo);
-                model.Regras = nova;
-                regraRepo.Alterar(model);
-                return Ok(model);
-            }
+            string nova = model.Regras.Replace(model.Regras, model.Regras + "," + codigo);
+            model.Regras = nova;
+            regraRepo.Alterar(model);
+            return Ok(model);
         }
 
         [HttpPut("DeleteRegrasPorOperadoraECodigo/{id}/{codigo}")]
@@ -112,29 +104,24 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
             var model = regraRepo.All.Where(c => c.Operadora == id && c.Regras.Contains(codigo)).FirstOrDefault();
 
             if (model == null)
-            {
                 return NotFound();
+
+            if (codigo == model.Regras.Substring(model.Regras.Length - 4) || codigo == model.Regras.Substring(model.Regras.Length - 3))
+            {
+                string nova = model.Regras.Replace("," + codigo, "");
+                model.Regras = nova;
+                regraRepo.Alterar(model);
+                return Ok(model);
             }
 
             else
             {
-                if (codigo == model.Regras.Substring(model.Regras.Length - 4) || codigo == model.Regras.Substring(model.Regras.Length - 3))
-                {
-                    string nova = model.Regras.Replace("," + codigo, "");
-                    model.Regras = nova;
-                    regraRepo.Alterar(model);
-                    return Ok(model);
-                }
-
-                else
-                {
-                    string nova = model.Regras.Replace(codigo + ",", "");
-                    model.Regras = nova;
-                    regraRepo.Alterar(model);
-                    return Ok(model);
-                }
+                string nova = model.Regras.Replace(codigo + ",", "");
+                model.Regras = nova;
+                regraRepo.Alterar(model);
+                return Ok(model);
             }
-        }
+        }        
 
         [HttpDelete("DeleteRegrasPorIdOperadora/{id}")]
         public IActionResult DeleteRegrasPorIdOperadora(int id)
@@ -142,15 +129,10 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
             var model = regraRepo.All.Where(c => c.Operadora == id).FirstOrDefault();
 
             if (model == null)
-            {
                 return NotFound();
-            }
 
-            else
-            {
-                regraRepo.Excluir(model);
-                return Ok(model);
-            }
+            regraRepo.Excluir(model);
+            return NoContent();
         }
     }
 }
