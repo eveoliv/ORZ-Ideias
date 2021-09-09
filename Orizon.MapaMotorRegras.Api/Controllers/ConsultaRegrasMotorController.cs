@@ -16,7 +16,7 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
         private readonly IRepository<RegraOperadora> regraRepo;
         private readonly IRepository<RegraDocumentacao> docRepo;
 
-        public ConsultaMapaController(IRepository<RegraOperadora> regraRepo, IRepository<RegraDetalhe> detalheRepo, IRepository<RegraDocumentacao> docRepo)
+        public ConsultaRegrasMotorController(IRepository<RegraOperadora> regraRepo, IRepository<RegraDetalhe> detalheRepo, IRepository<RegraDocumentacao> docRepo)
         {
             this.regraRepo = regraRepo;
             this.detalheRepo = detalheRepo;
@@ -57,5 +57,7 @@ namespace Orizon.MapaMotorRegras.Api.Controllers
 
             return Ok(model);
         }
+
+
     }
 }

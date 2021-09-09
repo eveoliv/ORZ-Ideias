@@ -1,9 +1,6 @@
-﻿using System;
+﻿using System.IO;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Logging;
-using Orizon.MapaMotorRegras.Api.Context;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Orizon.MapaMotorRegras.Api
 {
@@ -11,7 +8,7 @@ namespace Orizon.MapaMotorRegras.Api
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            CreateWebHostBuilder(args).Build().Run();                       
 
             ////Desenvolvimento iniciar base de dados
             //var host =  CreateWebHostBuilder(args).Build();
@@ -34,6 +31,9 @@ namespace Orizon.MapaMotorRegras.Api
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args).UseStartup<Startup>();
+            WebHost
+            .CreateDefaultBuilder(args)
+            .UseStartup<Startup>()
+            .UseIISIntegration();            
     }
 }
